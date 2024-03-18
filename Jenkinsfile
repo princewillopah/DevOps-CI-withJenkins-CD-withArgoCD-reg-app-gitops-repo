@@ -16,32 +16,9 @@ pipeline {
                     git branch: 'master', credentialsId: 'Github-Credentials', url: 'https://github.com/princewillopah/DevOps-CI-withJenkins-CD-withArgoCD-reg-app-gitops-repo'
                }
         }
-
-        // stage("Update the Deployment Tags") {
-        //     steps {
-        //         sh """
-        //            cat deployment.yaml
-        //            sed -i "s/\${APP_NAME}.*/\${APP_NAME}:\${IMAGE_TAG}/g" deployment.yaml
-        //            sed -i "s/$${APP_NAME}.*/$${APP_NAME}:$${env.IMAGE_TAG}/g" deployment.yaml
-                    //  sed -i "s/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g" deployment.yaml
-        //            cat deployment.yaml
-        //         """
-        //     }
-        // }
-            //  stage("Update the Deployment Tags") {
-            //     steps {
-            //         sh """
-            //         cat deployment.yaml
-            //          sed -i "s|${APP_NAME}:.*|${APP_NAME}:${IMAGE_TAG}|g" deployment.yaml
-            //         cat deployment.yaml
-            //         """
-            //     }
-            // }
-
             stage("Update the Deployment Tags") {
                     steps {
                         sh """
-                        echo "IMAGE_TAG value is: ${IMAGE_TAG}"
                         cat deployment.yaml
                          sed -i "s/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g" deployment.yaml
                         cat deployment.yaml
