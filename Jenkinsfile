@@ -1,7 +1,7 @@
 pipeline {
     agent { label "Jenkins-Slave-Agent-Node-Label" }
     environment {
-              APP_NAME = "register-app-pipeline"
+              APP_NAME = "registration-app-pipeline"
     }
 
     stages {
@@ -43,7 +43,7 @@ pipeline {
                         sh """
                         echo "IMAGE_TAG value is: ${IMAGE_TAG}"
                         cat deployment.yaml
-                        sed -i "s|${APP_NAME}:.*|${APP_NAME}:${IMAGE_TAG}|g" deployment.yaml
+                         sed -i "s/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g" deployment.yaml
                         cat deployment.yaml
                         """
                     }
